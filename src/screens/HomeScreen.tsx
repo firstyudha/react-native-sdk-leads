@@ -55,7 +55,6 @@ const renderEvent = ({ item }:{item:any}) => (
 
 return (
 <View style={styles.card}>
-  <Text>sdk-leads v0.1.0</Text>
   <FlatList
       data={events}
       renderItem={renderEvent}
