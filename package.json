@@ -1,6 +1,6 @@
 {
   "name": "react-native-sdk-leads",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "leads sdk",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -34,7 +34,8 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*"
+    "!**/.*",
+    "!src/example/"
   ],
   "scripts": {
     "example": "yarn workspace react-native-sdk-leads-example",
@@ -183,5 +184,10 @@
     "languages": "js",
     "type": "library",
     "version": "0.44.2"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^7.0.8",
+    "@react-navigation/native-stack": "^7.1.9",
+    "@react-navigation/stack": "^7.0.13"
   }
 }
