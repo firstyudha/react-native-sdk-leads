@@ -3,7 +3,7 @@ import {
   API_POST_LEAD
 } from './endpoints/index'
 
-const postLead = async (payload:any) => {
+export default async function postLead(payload:any) {
   try {
     const response = await axios.post(API_POST_LEAD,payload);
     return response.data;
@@ -11,5 +11,3 @@ const postLead = async (payload:any) => {
     throw error;
   }
 };
-
-export default postLead

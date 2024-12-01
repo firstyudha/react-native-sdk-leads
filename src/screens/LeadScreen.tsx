@@ -30,13 +30,13 @@ export default function LeadScreen({ route,navigation }: { route: any; navigatio
 
     try {
       await postLead({
-        "name": name,
-        "email": email,
-        "phone_number": phoneNumber,
-        "campaign_id": campaign_id,
-        "address": address,
-        "status": "NEW"
-    })
+          "name": name,
+          "email": email,
+          "phone_number": phoneNumber,
+          "campaign_id": campaign_id,
+          "address": address,
+          "status": "NEW"
+      })
       Alert.alert('Success', 'Form submitted successfully!');
     } catch (error) {
       if (error instanceof Error) {

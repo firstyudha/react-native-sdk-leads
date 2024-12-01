@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { 
   View, 
@@ -7,7 +8,8 @@ import {
   StyleSheet, 
   Image,
   ActivityIndicator,
-  Alert
+  Alert,
+  RefreshControl
  } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getEventsThunk } from "../../redux/slices/EventSlice";
@@ -53,21 +55,22 @@ const HomeScreen = ({ navigation }:{navigation:any}) => {
   // ];
 
 
+
   const eventsStore = useSelector(state => state.event)
   const {error,loading,events} = eventsStore
 
   const dispatch = useDispatch()
 
-  useEffect(()=>{
-    const fetchCampaign = async () => {
-      try {
-        await dispatch(getEventsThunk())
-      } catch (error) {
-        Alert.alert('Fetch data failed');
-      } finally {
-      }
+  const fetchCampaign = async () => {
+    try {
+      await dispatch(getEventsThunk())
+    } catch (error) {
+      Alert.alert('Fetch data failed');
+    } finally {
     }
+  }
 
+  useEffect(()=>{
     fetchCampaign()
   },[])
 
@@ -97,6 +100,9 @@ return (
       data={events}
       renderItem={renderEvent}
       keyExtractor={(item) => item.campaign_id.toString()}
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={fetchCampaign} />
+      }
     />
 </View>
 );
