@@ -9,43 +9,66 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Image,
 } from 'react-native';
+import postLead from '../services/LeadServices';
+
+const logo = require('../assets/logo/logo.png')
 
 export default function LeadScreen({ route,navigation }: { route: any; navigation: any }) {
-  const { event } = route.params;
+  const { campaign_id } = route.params.event;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!name || !email || !address || !phoneNumber) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
 
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted', { name, email, address, phoneNumber });
-    Alert.alert('Success', 'Form submitted successfully!');
+    try {
+      await postLead({
+        "name": name,
+        "email": email,
+        "phone_number": phoneNumber,
+        "campaign_id": campaign_id,
+        "address": address,
+        "status": "NEW"
+    })
+      Alert.alert('Success', 'Form submitted successfully!');
+    } catch (error) {
+      if (error instanceof Error) {
+        Alert.alert(error.message);
+      } else {
+        Alert.alert('Error', 'An unexpected error occurred');
+      }
+    }
 
     // Clear the form
     setName('');
     setEmail('');
     setAddress('');
     setPhoneNumber('');
+    
     navigation.navigate("Home")
   };
+
+
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <Text style={styles.title}>Lead Information</Text>
-        <Text style={styles.title}>{event.leadId}</Text>
-        
+      <ScrollView >
         <View style={styles.inputContainer}>
+          <Image
+            source={logo}
+            style={styles.logo}
+            resizeMode="contain"
+          />
           <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
@@ -53,6 +76,18 @@ export default function LeadScreen({ route,navigation }: { route: any; navigatio
             onChangeText={setName}
             placeholder="Enter your full name"
             placeholderTextColor="#999"
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Phone Number</Text>
+          <TextInput
+            style={styles.input}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+            placeholder="Enter your phone number"
+            placeholderTextColor="#999"
+            keyboardType="phone-pad"
           />
         </View>
 
@@ -81,18 +116,6 @@ export default function LeadScreen({ route,navigation }: { route: any; navigatio
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Phone Number</Text>
-          <TextInput
-            style={styles.input}
-            value={phoneNumber}
-            onChangeText={setPhoneNumber}
-            placeholder="Enter your phone number"
-            placeholderTextColor="#999"
-            keyboardType="phone-pad"
-          />
-        </View>
-
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
@@ -103,48 +126,58 @@ export default function LeadScreen({ route,navigation }: { route: any; navigatio
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  scrollView: {
     flexGrow: 1,
     justifyContent: 'center',
+    backgroundColor: '#f5f5f5',
     padding: 20,
+  },
+  formContainer: {
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 20,
     textAlign: 'center',
+    marginBottom: 20,
+    color: '#333',
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: 15,
   },
   label: {
     fontSize: 16,
-    color: '#333',
     marginBottom: 5,
+    color: '#333',
   },
   input: {
-    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
     padding: 10,
     fontSize: 16,
-    color: '#333',
   },
   button: {
-    backgroundColor: '#007AFF',
-    padding: 15,
+    backgroundColor: '#007bff',
     borderRadius: 5,
+    padding: 15,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 18,
     fontWeight: 'bold',
   },
 });
-
