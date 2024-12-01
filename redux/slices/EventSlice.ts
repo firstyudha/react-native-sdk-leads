@@ -7,7 +7,7 @@ export const getEventsThunk = createAsyncThunk("event/getEvents", async () => {
   return response.data;
 });
 
-interface EventState {
+export interface EventState {
   events: any[];
   loading: boolean;
   error: string | null;
