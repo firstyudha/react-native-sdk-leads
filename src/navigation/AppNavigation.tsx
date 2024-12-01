@@ -5,7 +5,7 @@ import HomeScreen from "../screens/HomeScreen";
 import DetailScreen from "../screens/DetailScreen";
 import LeadScreen from "../screens/LeadScreen";
 import { Provider } from 'react-redux'
-import { store } from "../../redux/store"
+import { store } from "../redux/store"
 
 const Stack = createStackNavigator();
 const packageJson = require('../../package.json')

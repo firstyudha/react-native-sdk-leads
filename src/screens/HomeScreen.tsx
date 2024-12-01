@@ -12,7 +12,7 @@ import {
   RefreshControl
  } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventsThunk } from "../../redux/slices/EventSlice";
+import { getEventsThunk } from "../redux/slices/EventSlice";
 
 const HomeScreen = ({ navigation }:{navigation:any}) => {
   // const events = [
