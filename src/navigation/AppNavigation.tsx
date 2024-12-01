@@ -8,13 +8,12 @@ import { Provider } from 'react-redux'
 import { store } from "../redux/store"
 
 const Stack = createStackNavigator();
-const version = '0.2.3'
+const version = '0.2.4'
 const AppNavigation = () => {
   return (
     <Provider store={store} >
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} options={
+        <Stack.Navigator initialRouteName="SDK">
+          <Stack.Screen name="SDK" component={HomeScreen} options={
             {title : "sdk-leads v"+version}
           } />
           <Stack.Screen name="Detail" component={DetailScreen} options={({route}) => ({
@@ -24,7 +23,6 @@ const AppNavigation = () => {
             {title : "Form"}
           } />
         </Stack.Navigator>
-      </NavigationContainer>
     </Provider>
   );
 };
