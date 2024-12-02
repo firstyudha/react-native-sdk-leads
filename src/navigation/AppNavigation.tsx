@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 import { store } from "../redux/store"
 
 const Stack = createStackNavigator();
-const version = '1.0.0'
+const version = '1.0.2'
 const AppNavigation = () => {
   return (
     <Provider store={store} >
