@@ -101,7 +101,6 @@ const renderEvent = ({ item }:{item:any}) => (
       style={styles.image} 
     />
     <Text style={styles.title}>{item.campaign_name}</Text>
-    <Text style={styles.date}>{item.date}</Text>
 </TouchableOpacity>
 );
 
@@ -139,6 +138,7 @@ card: {
     elevation: 2,
   },
   title: {
+    marginTop:10,
     fontSize: 16,
     fontWeight: "bold",
   },

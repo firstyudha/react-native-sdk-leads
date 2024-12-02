@@ -25,10 +25,10 @@ const DetailScreen = ({ route,navigation }: { route: any; navigation: any }) => 
             <Text style={styles.pengajuanButtonText}>Ajukan</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.pengajuanButton}
+            style={styles.pengajuanButtonColor}
             onPress={() => navigation.push("LeadPay", { event: event })}
           >
-            <Text style={styles.pengajuanButtonText}>Beli Sekarang</Text>
+            <Text style={styles.pengajuanButtonTextColor}>Beli Sekarang</Text>
           </TouchableOpacity>
         </View>
     </View>
@@ -55,11 +55,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flex: 1,
   },
+  pengajuanButtonColor: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    flex: 1,
+    backgroundColor:"#007bff"
+  },
   pengajuanButtonText: {
     marginLeft: 10,
     fontSize: 14,
     fontWeight: '600',
   },
+  pengajuanButtonTextColor: {
+    marginLeft: 10,
+    fontSize: 14,
+    fontWeight: '600',
+    color: "#fff"
+  },
+  
   title: {
     fontSize: 24,
     fontWeight: "bold",
