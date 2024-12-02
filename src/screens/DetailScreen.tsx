@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, useWindowDimensions, TouchableOpacity,Alert  } from "react-native";
+import { View, Text, StyleSheet, Image, useWindowDimensions, TouchableOpacity  } from "react-native";
 import RenderHtml from 'react-native-render-html';
 
 const DetailScreen = ({ route,navigation }: { route: any; navigation: any }) => {

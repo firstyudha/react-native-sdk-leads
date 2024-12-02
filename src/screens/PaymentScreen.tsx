@@ -5,7 +5,7 @@ const PaymentScreen = ({ route,navigation }: { route: any; navigation: any }) =>
   const {redirect_url} = route.params.event
   
   const handleSuccess = (url:any) => {
-    // Alert.alert('Payment Success', `Redirected URL: ${url}`);
+    Alert.alert('Payment Success', `Redirected URL: ${url}`);
     navigation.navigate("SDK")
   };
 
