@@ -12,11 +12,15 @@ npm install react-native-sdk-leads
 
 
 ```js
-import { multiply } from 'react-native-sdk-leads';
+import {AppNavigation as ApNav} from 'react-native-sdk-leads';
 
 // ...
 
-const result = await multiply(3, 7);
+export default function App() {
+  return (
+    <ApNav />
+  );
+}
 ```
 
 

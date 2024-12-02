@@ -1,6 +1,6 @@
 {
   "name": "react-native-sdk-leads",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "leads sdk",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -194,6 +194,7 @@
     "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "^4.14.0",
     "react-native-svg": "12.1.1",
+    "react-native-webview": "^13.12.4",
     "react-redux": "^9.1.2"
   }
 }

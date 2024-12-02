@@ -83,12 +83,23 @@ const HomeScreen = ({ navigation }:{navigation:any}) => {
       </View>
     );
   }
+
+  if(error){
+    return(
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>Something went wrong</Text>
+      </View>
+    )
+  }
 const renderEvent = ({ item }:{item:any}) => (
 <TouchableOpacity
     style={styles.card}
     onPress={() => navigation.navigate("Detail", { event: item })}
 >
-    <Image source={{ uri: item.product_image }} style={styles.image} />
+    <Image 
+      source={{ uri: item.product_image }} 
+      style={styles.image} 
+    />
     <Text style={styles.title}>{item.campaign_name}</Text>
     <Text style={styles.date}>{item.date}</Text>
 </TouchableOpacity>

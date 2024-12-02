@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, Image, useWindowDimensions  } from "react-native";
+import { View, Text, StyleSheet, Image, useWindowDimensions, TouchableOpacity,Alert  } from "react-native";
 import RenderHtml from 'react-native-render-html';
 
 const DetailScreen = ({ route,navigation }: { route: any; navigation: any }) => {
@@ -17,11 +17,20 @@ const DetailScreen = ({ route,navigation }: { route: any; navigation: any }) => 
         contentWidth={width}
         source={source}
       />
-      <Button
-        onPress={() => navigation.push("Lead", { event: event })}
-        title="Ambil Promonya Sekarang"
-        color="#841584"
-      />
+        <View style={styles.pengajuanContainer}>
+          <TouchableOpacity
+            style={[styles.pengajuanButton, { marginRight: 10 }]}
+            onPress={() => navigation.push("Lead", { event: event })}
+          >
+            <Text style={styles.pengajuanButtonText}>Ajukan</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.pengajuanButton}
+            onPress={() => navigation.push("LeadPay", { event: event })}
+          >
+            <Text style={styles.pengajuanButtonText}>Beli Sekarang</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 };
@@ -31,6 +40,25 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
+  },
+  pengajuanContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  pengajuanButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    flex: 1,
+  },
+  pengajuanButtonText: {
+    marginLeft: 10,
+    fontSize: 14,
+    fontWeight: '600',
   },
   title: {
     fontSize: 24,
@@ -43,10 +71,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   description: {
-    fontSize: 16,
-    color: "#333",
-    marginTop:20,
-    marginBottom:20,
+    fontSize: 14,
+    color: '#666',
+    marginTop: 20,
+    marginBottom: 20,
+    textAlign: 'center',
   },
   rtxDesc: {
     color: "#333",
