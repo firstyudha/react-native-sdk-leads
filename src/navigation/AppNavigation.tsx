@@ -10,11 +10,11 @@ import { Provider } from 'react-redux'
 import { store } from "../redux/store"
 
 const Stack = createStackNavigator();
-const version = '1.0.2'
+const version = '1.1.0'
 const AppNavigation = () => {
   return (
     <Provider store={store} >
-      {/* <NavigationContainer> remove when publish */}
+      {/* <NavigationContainer> */}
         <Stack.Navigator initialRouteName="SDK">
           <Stack.Screen name="SDK" component={HomeScreen} options={
             {title : "sdk-leads v"+version}
@@ -32,7 +32,7 @@ const AppNavigation = () => {
             {title : ""}
           } />
         </Stack.Navigator>
-      {/* </NavigationContainer> remove when publish */}
+      {/* </NavigationContainer> */}
     </Provider>
   );
 };

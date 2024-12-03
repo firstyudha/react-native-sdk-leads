@@ -25,28 +25,41 @@ export default function LeadPayScreen({ route,navigation }: { route: any; naviga
   
 
   const handleSubmit = async () => {
-    const order_id = 'SUL-'+ Math.random()
+    const d = new Date();
+    let time = d.getTime();
+    const order_id = 'SUL-'+ time
+
     if (!name || !email || !address || !phoneNumber) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
-    
 
     const data = {
-      "transaction_details": {
-          "order_id": order_id,
-          "gross_amount": price
+      "Payment":{
+        "transaction_details": {
+            "order_id": order_id,
+            "gross_amount": price
+        },
+        "payment_type": "gopay",
+        "customer": name,
+        "item_details": [
+            {
+                "id": campaign_id,
+                "price": price,
+                "quantity": 1,
+                "name": campaign_name
+            }
+        ]
       },
-      "payment_type": "gopay",
-      "customer": name,
-      "item_details": [
-          {
-              "id": campaign_id,
-              "price": price,
-              "quantity": 1,
-              "name": campaign_name
-          }
-      ]
+      "Order": {
+        "quick_order_id": order_id,
+        "name": name,
+        "email": email,
+        "phone_number": phoneNumber,
+        "address": address,
+        "campaign_id": campaign_id,
+        "status": "UNPAID"
+      }
     }
 
     try {

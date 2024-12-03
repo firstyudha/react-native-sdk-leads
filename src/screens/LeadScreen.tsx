@@ -52,7 +52,7 @@ export default function LeadScreen({ route,navigation }: { route: any; navigatio
     setAddress('');
     setPhoneNumber('');
     
-    navigation.navigate("Home")
+    navigation.navigate("SDK")
   };
 
 
